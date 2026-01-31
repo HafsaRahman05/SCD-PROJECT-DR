@@ -15,7 +15,7 @@ A centralized platform connecting donors with verified NGOs to ensure transparen
 7. [Usage](#usage)  
 8. [Future Improvements](#future-improvements)  
 9. [Contributing](#contributing)  
-10. [License](#license)  
+
 
 ---
 
@@ -151,4 +151,5 @@ http://127.0.0.1:5000/
 3. Commit your changes: ```git commit -m "Add feature" ```
 4. Push to the branch: ```git push origin feature-name```
 5. Open a Pull Request.
+
 
