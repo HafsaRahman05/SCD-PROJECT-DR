@@ -1,0 +1,102 @@
+{% extends "base_admin.html" %}
+{% block content %}
+
+<div class="detail-wrapper">
+
+    <h1 class="page-title">Donation #{{ donation.id }}</h1>
+    <p class="page-subtitle">
+        Review donation details and assign to an NGO.
+    </p>
+
+    <!-- ================= DONATION INFORMATION ================= -->
+    <div class="dr-card detail-card">
+
+        <h2 class="section-title">Donation Information</h2>
+
+        <table class="dr-detail-table">
+            <tr>
+                <th>Tracking ID</th>
+                <td class="mono">{{ donation.tracking_id }}</td>
+            </tr>
+            <tr>
+                <th>Item</th>
+                <td>{{ donation.item_name }}</td>
+            </tr>
+            <tr>
+                <th>Quantity</th>
+                <td>{{ donation.quantity }}</td>
+            </tr>
+            <tr>
+                <th>Condition</th>
+                <td>{{ donation.condition }}</td>
+            </tr>
+            <tr>
+                <th>Donor Zone</th>
+                <td>{{ donation.donor_zone }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ donation.description or "No description provided." }}</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <!-- ================= ASSIGN TO NGO ================= -->
+    <div class="dr-card detail-card">
+
+        <h2 class="section-title">Assign to NGO</h2>
+
+        <form method="post" class="assign-form">
+        <input type="hidden" name="action" value="assign">
+
+            <select name="ngo_id" required class="dr-input assign-select">
+                <option value="">Select NGO</option>
+                {% for ngo in all_ngos %}
+                    <option value="{{ ngo.id }}">
+                        {{ ngo.name }} ({{ ngo.zone }})
+                    </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" class="dr-btn assign-btn">
+                Assign Donation
+            </button>
+
+        </form>
+
+    </div>
+
+    
+    <!-- ================= REJECTING DONATION ================= -->
+    <div class="dr-card detail-card">
+
+        <h2 class="section-title">Reject Donation</h2>
+
+    <form method="post">
+        <input type="hidden" name="action" value="reject">
+
+        <label class="dr-label">Reject Reason</label>
+        <textarea
+                name="reject_reason"
+                class="dr-input"
+                rows="4"
+                placeholder="Explain why this donation is rejected..."
+                required
+        ></textarea>
+
+        <button
+            type="submit"
+            class="dr-reject-btn"
+            style="background: linear-gradient(135deg, #ef4444, #dc2626); margin-top: 18px;"
+            >
+            Reject Donation
+        </button>
+    </form>
+
+</div>
+
+
+</div>
+
+{% endblock %}

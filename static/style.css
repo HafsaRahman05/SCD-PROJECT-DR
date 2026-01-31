@@ -1,0 +1,751 @@
+/* ================================
+   GLOBAL RESET & THEME
+================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", system-ui, sans-serif;
+  background: linear-gradient(180deg, #f6faf8, #edf5f0);
+  color: #0f172a;
+  line-height: 1.65;
+}
+
+/* Remove unwanted theme toggle */
+.dr-theme-toggle {
+  display: none !important;
+}
+
+/* ================================
+   LAYOUT
+================================ */
+
+.dr-shell {
+  max-width: 1280px;
+  margin: auto;
+}
+
+.dr-page {
+  padding: 90px 24px;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.dr-header {
+  height: 88px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 30px 70px rgba(0,0,0,.08);
+}
+
+.dr-logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dr-logo-text {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: .4px;
+}
+
+.dr-logo-text span {
+  color: #16a34a;
+}
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.dr-nav-wrapper {
+  background: transparent;
+}
+
+.dr-nav {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 56px;
+}
+
+.dr-nav-link {
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  text-decoration: none;
+  position: relative;
+  padding: 6px 0;
+}
+
+.dr-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  border-radius: 999px;
+  transition: .3s ease;
+}
+
+.dr-nav-link:hover {
+  color: #16a34a;
+}
+
+.dr-nav-link:hover::after {
+  width: 100%;
+}
+
+/* ================================
+   TITLES
+================================ */
+
+.dr-page-title {
+  font-size: 46px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.dr-page-subtitle {
+  max-width: 760px;
+  margin: 0 auto 90px;
+  text-align: center;
+  font-size: 16px;
+  color: #64748b;
+}
+
+/* ================================
+   CARDS (Luxury Glass Look)
+================================ */
+
+.dr-card,
+.admin-card,
+.detail-card,
+.ngo-card,
+.track-card,
+.status-card,
+.progress-card,
+.details-card,
+.success-card,
+.donation-form-card {
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(18px);
+  border-radius: 32px;
+  padding: 54px;
+  box-shadow:
+    0 40px 90px rgba(15,23,42,.15),
+    inset 0 1px 0 rgba(255,255,255,.4);
+  margin-bottom: 54px;
+}
+
+/* ================================
+   HOME GRID
+================================ */
+
+.dr-home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 56px;
+  max-width: 1050px;
+  margin: auto;
+}
+
+.dr-card-title {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.dr-card-subtitle {
+  font-size: 15px;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+.dr-help {
+  margin-bottom: 38px;
+  color: #475569;
+}
+
+/* Remove underline from home links */
+.dr-card a {
+  text-decoration: none;
+}
+
+/* ================================
+   BUTTONS (Luxury Gradient)
+================================ */
+
+.dr-btn,
+.df-btn,
+.track-btn,
+.assign-btn {
+  width: 100%;
+  height: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.dr-reject-btn{
+  width: 100%;
+  height: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.dr-reject-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(228, 85, 74, 0.45);
+}
+
+.dr-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(22,163,74,.45);
+}
+
+.dr-btn-secondary {
+  width: 100%;
+  height: 58px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #facc15, #eab308);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: all .3s ease;
+  margin-top: 18px; /* GAP between donor buttons */
+}
+
+.dr-btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(234,179,8,.45);
+}
+
+/* ================================
+   FORMS
+================================ */
+
+form {
+  max-width: 540px;
+  margin: auto;
+}
+
+.dr-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  height: 54px;
+  padding: 0 20px;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 24px;
+  font-size: 14px;
+  background: #ffffff;
+}
+
+textarea {
+  height: auto;
+  padding: 16px 20px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 4px rgba(22,163,74,.15);
+}
+
+/* ================================
+   TABLES (ADMIN – PREMIUM)
+================================ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,.1);
+}
+
+th {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  color: #14532d;
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+tbody tr:hover {
+  background: #f0fdf4;
+}
+
+/* Donation detail table */
+.dr-detail-table th {
+  width: 32%;
+}
+
+/* ================================
+   STATUS BADGES
+================================ */
+
+.status-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+}
+
+.status-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* ================================
+   BACKGROUND BLOBS
+================================ */
+
+.dr-blob {
+  position: fixed;
+  width: 480px;
+  height: 480px;
+  background: #dcfce7;
+  opacity: .25;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.blob-1 {
+  top: -220px;
+  left: -220px;
+}
+
+.blob-2 {
+  bottom: -220px;
+  right: -220px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 640px) {
+  .dr-page-title {
+    font-size: 32px;
+  }
+
+  .dr-home-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dr-nav {
+    gap: 28px;
+  }
+}
+.dr-password-wrapper {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.dr-password-wrapper input {
+    width: 100%;
+    padding-right: 50px; /* space for eye button */
+    height: 54px;        /* make sure height matches other inputs */
+}
+
+.dr-eye {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font-size: 18px;
+    color: #64748b;
+    z-index: 10;
+}
+
+.dr-eye:hover {
+    color: #16a34a;
+}
+
+
+.dr-eye:focus {
+  outline: none;
+}
+
+.dr-field {
+  margin-bottom: 24px;
+}
+
+.dr-help {
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+.dr-password-wrapper {
+  margin-bottom: 24px;
+}
+
+input,
+select,
+textarea {
+  margin-bottom: 0;
+}
+.dr-home-grid .dr-card {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.dr-home-grid .dr-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 50px 100px rgba(15,23,42,.18),
+    inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+.dr-logout-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+/* ================================
+   PROGRESS STEPS (TRACK RESULT)
+================================ */
+
+.progress-steps {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 28px;
+  padding: 10px 6px 0;
+}
+
+/* connector line behind dots */
+.progress-steps::before {
+  content: "";
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 18px;
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  z-index: 0;
+}
+
+.progress-step {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  z-index: 1;
+}
+
+.progress-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  margin: 0 auto 10px;
+  box-shadow: 0 8px 18px rgba(0,0,0,.06);
+}
+
+/* Active step = green */
+.progress-step.active {
+  color: #166534;
+}
+
+.progress-step.active .progress-dot {
+  background: #16a34a;
+}
+
+/* Rejected active step = red */
+.progress-step.rejected.active {
+  color: #991b1b;
+}
+
+.progress-step.rejected.active .progress-dot {
+  background: #dc2626;
+}
+
+/* ================================
+   STATUS REJECTED CIRCLE
+================================ */
+.status-rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+
+/* ================================
+   ASSIGNED NGO RESULT CARD
+================================ */
+
+.assigned-ngo-card {
+  margin-top: 28px;
+  padding: 28px 32px;
+  border-radius: 22px;
+  background: linear-gradient(
+    135deg,
+    rgba(220, 252, 231, 0.85),
+    rgba(187, 247, 208, 0.85)
+  );
+  box-shadow:
+    0 20px 50px rgba(22, 163, 74, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.assigned-ngo-header {
+  margin-bottom: 14px;
+}
+
+.assigned-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  background: rgba(22, 163, 74, 0.15);
+  color: #166534;
+}
+
+.assigned-ngo-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #14532d;
+  margin-bottom: 6px;
+}
+
+.assigned-ngo-zone {
+  font-size: 14px;
+  color: #166534;
+}
+
+/* ================================
+   ADMIN DASHBOARD
+================================ */
+
+/* Base card */
+.admin-card-clean {
+    background: #ffffff;
+    padding: 40px 30px;             /* more padding for bigger card */
+    min-height: 300px;              /* taller cards as you want */
+    border-radius: 18px;
+    text-decoration: none;
+    color: #111827;
+    box-shadow: 0 3px 12px rgba(15,23,42,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 28px;                      /* more space between top row & description */
+    transition: 0.22s ease;
+    border: 1px solid #e5e7eb;
+}
+
+/* Hover */
+.admin-card-clean:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(15,23,42,0.14);
+}
+
+/* Top row: icon left, text right */
+.admin-card-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Icon circle */
+.admin-card-icon-wrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;                 /* bigger icon */
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+/* Text area */
+.admin-card-top-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Title */
+.admin-card-title-clean {
+  font-size: 18px;                 /* a bit larger */
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Number */
+.admin-card-number-clean {
+  font-size: 32px;                 /* bigger number for presence */
+  font-weight: 800;
+  color: #111827;
+}
+
+/* Description */
+.admin-card-desc-clean {
+  margin-top: 4px;
+  font-size: 15px;                 /* slightly larger text */
+  line-height: 1.6;
+  color: #4b5563;
+  opacity: 0.85;
+}
+
+/* ---- Light accent per card (border + icon background + icon color) ---- */
+
+.pending-card-clean {
+  border-top: 4px solid #facc15; /* light yellow */
+}
+.pending-icon-wrap {
+  background: #fef9c3;
+  color: #ca8a04;
+}
+
+.assigned-card-clean {
+  border-top: 4px solid #3b82f6; /* blue */
+}
+.assigned-icon-wrap {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.rejected-card-clean {
+  border-top: 4px solid #ef4444; /* red */
+}
+.rejected-icon-wrap {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.ngo-card-clean {
+  border-top: 4px solid #22c55e; /* green */
+}
+.ngo-icon-wrap {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+
+/* Admin variant of the main header */
+.dr-header-admin {
+    max-width: 1300px;
+    height: 88px;
+    margin: 4px auto 8px auto;   
+    padding: 14px 20px;
+    background: rgba(255,255,255,.85);
+    color: #000;
+}
+
+/* keep green accent on Routing text */
+.dr-header-admin .dr-logo-text span {
+    color: #16a34a;
+}
+
+/* Simple admin navbar under the admin header */
+.admin-nav {
+    max-width: 1300px;
+    margin: 0 auto 20px auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.admin-nav-link {
+    text-decoration: none;
+    color: #064e3b;
+    padding: 6px 12px;
+    border-radius: 999px;
+    transition: background 0.18s ease, color 0.18s ease;
+}
+
+.admin-nav-link:hover {
+    background: #ecfdf3;
+    color: #16a34a;
+}
+
+.admin-nav-logout {
+    margin-left: auto;
+    color: #b91c1c;
+}
+
+.admin-nav-logout:hover {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+

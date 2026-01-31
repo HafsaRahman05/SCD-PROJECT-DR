@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dr-blob blob-1"></div>
+<div class="dr-blob blob-2"></div>
+
+<h1 class="dr-page-title">Create Your Donor Account</h1>
+<p class="dr-page-subtitle">
+    Register to start donating items and supporting NGOs across Karachi.
+</p>
+
+<!-- REGISTER FORM CARD -->
+<div class="dr-card" style="max-width: 540px; margin: auto;">
+
+    <form method="post" action="{{ url_for('register') }}" class="dr-form">
+
+        <!-- FULL NAME -->
+        <div class="dr-field">
+            <label class="dr-label">
+                Full Name <span style="color:#ef4444">*</span>
+            </label>
+            <input
+                class="dr-input {% if field_errors.get('full_name') %}dr-input-error{% endif %}"
+                name="full_name"
+                required
+                placeholder="Your full name"
+                value="{{ request.form.get('full_name','') }}"
+            >
+        </div>
+
+        <!-- EMAIL -->
+        <div class="dr-field">
+            <label class="dr-label">
+                Email Address <span style="color:#ef4444">*</span>
+            </label>
+            <input
+                class="dr-input {% if field_errors.get('email') %}dr-input-error{% endif %}"
+                name="email"
+                type="email"
+                required
+                placeholder="name@example.com"
+                value="{{ request.form.get('email','') }}"
+            >
+        </div>
+
+        <!-- PHONE -->
+        <div class="dr-field">
+            <label class="dr-label">
+                Phone Number <span style="color:#ef4444">*</span>
+            </label>
+            <input
+                class="dr-input {% if field_errors.get('phone') %}dr-input-error{% endif %}"
+                name="phone"
+                required
+                placeholder="0301-2345678"
+                value="{{ request.form.get('phone','') }}"
+            >
+            <div class="dr-help">Format: 0301-2345678</div>
+        </div>
+
+        <!-- ZONE -->
+        <div class="dr-field">
+            <label class="dr-label">
+                Zone / Area in Karachi <span style="color:#ef4444">*</span>
+            </label>
+            <input
+                class="dr-input {% if field_errors.get('zone') %}dr-input-error{% endif %}"
+                name="zone"
+                required
+                placeholder="e.g. Saddar, Gulshan-e-Iqbal"
+                value="{{ request.form.get('zone','') }}"
+            >
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="dr-field">
+            <label class="dr-label">
+                Password <span style="color:#ef4444">*</span>
+            </label>
+
+            <div class="dr-password-wrapper">
+                <input
+                    class="dr-input {% if field_errors.get('password') %}dr-input-error{% endif %}"
+                    name="password"
+                    type="password"
+                    required
+                    minlength="8"
+                    placeholder="At least 8 characters"
+                    id="password"
+                >
+                <button type="button" class="dr-eye" onclick="togglePassword('password', this)">
+                    <i class="fa fa-eye"></i>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="dr-field">
+            <label class="dr-label">
+                Confirm Password <span style="color:#ef4444">*</span>
+            </label>
+
+            <div class="dr-password-wrapper">
+                <input
+                    class="dr-input {% if field_errors.get('confirm_password') %}dr-input-error{% endif %}"
+                    name="confirm_password"
+                    type="password"
+                    required
+                    minlength="8"
+                    placeholder="Re-enter your password"
+                    id="confirm_password"
+                >
+                <button type="button" class="dr-eye" onclick="togglePassword('confirm_password', this)">
+                    <i class="fa fa-eye"></i>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="dr-btn dr-btn-full">
+            Create Account
+        </button>
+
+    </form>
+
+    <!-- LOGIN LINK -->
+    <div style="text-align:center; margin-top:16px; font-size:14px;">
+        Already registered?
+        <a href="{{ url_for('login', role='donor') }}"
+           style="color:#16a34a; font-weight:600;">
+            Login here
+        </a>
+    </div>
+
+</div>
+
+<!-- PASSWORD TOGGLE SCRIPT -->
+<script>
+function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector("i");
+    if (!input || !icon) return;
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+</script>
+
+{% endblock %}

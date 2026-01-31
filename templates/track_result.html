@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dr-blob blob-1"></div>
+<div class="dr-blob blob-2"></div>
+
+<h1 class="dr-page-title">Donation Status</h1>
+<p class="dr-page-subtitle">
+    Track your donation's journey and assigned NGO information.
+</p>
+
+<!-- ============================= -->
+<!-- STATUS CARD -->
+<!-- ============================= -->
+<div class="status-card">
+
+    <div class="status-header">
+        <div>
+            <p class="status-label">Tracking ID</p>
+            <p class="status-value">{{ donation.tracking_id }}</p>
+        </div>
+
+        <!-- Status Circle -->
+        <div class="status-circle
+            {{ 'status-success' if donation.status == 'assigned'
+               else 'status-rejected' if donation.status == 'rejected'
+               else 'status-pending' }}">
+            {% if donation.status == "assigned" %}
+                ✔
+            {% elif donation.status == "rejected" %}
+                ✖
+            {% else %}
+                ⏳
+            {% endif %}
+        </div>
+    </div>
+
+    <p class="status-message">
+        {% if donation.status == "pending" %}
+            Your donation is <strong>waiting to be assigned</strong> to a suitable NGO.
+        {% elif donation.status == "assigned" %}
+            Your donation has been <strong>assigned to an NGO</strong>.
+        {% elif donation.status == "rejected" %}
+            Your donation has been <strong>rejected</strong>.
+            {% if donation.rejected_reason %}
+                <br><strong>Reason:</strong> {{ donation.rejected_reason }}
+            {% endif %}
+        {% else %}
+            Your donation is currently <strong>being processed</strong>.
+        {% endif %}
+    </p>
+
+    {% if donation.status == "assigned" and donation.ngo %}
+    <div class="assigned-ngo-card">
+        <div class="assigned-ngo-header">
+            <span class="assigned-badge">✓ Assigned NGO</span>
+        </div>
+
+        <h3 class="assigned-ngo-name">{{ donation.ngo.name }}</h3>
+        <p class="assigned-ngo-zone">Zone: {{ donation.ngo.zone }}</p>
+    </div>
+    {% endif %}
+
+
+</div>
+
+<!-- ============================= -->
+<!-- PROGRESS STEPS (Improved) -->
+<!-- ============================= -->
+<div class="progress-card">
+    <h3 class="dr-card-title">Progress</h3>
+
+    <div class="progress-steps">
+
+        <!-- Step 1 -->
+        <div class="progress-step active">
+            <div class="progress-dot"></div>
+            <span>Request Received</span>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="progress-step {{ 'active' if donation.status == 'assigned' else '' }}">
+            <div class="progress-dot"></div>
+            <span>Assigned to NGO</span>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="progress-step rejected {{ 'active' if donation.status == 'rejected' else '' }}">
+            <div class="progress-dot"></div>
+            <span>Rejected</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- ============================= -->
+<!-- DONATION DETAILS -->
+<!-- ============================= -->
+<div class="details-card">
+
+    <h3 class="dr-card-title">Donation Details</h3>
+
+    <ul class="details-list">
+        <li><strong>Item:</strong> {{ donation.item_name }}</li>
+        <li><strong>Quantity:</strong> {{ donation.quantity }}</li>
+        <li><strong>Condition:</strong> {{ donation.condition }}</li>
+        <li>
+            <strong>Description:</strong><br>
+            {% if donation.description %}
+                {{ donation.description }}
+            {% else %}
+                <span class="dr-help">(No additional description provided.)</span>
+            {% endif %}
+        </li>
+    </ul>
+
+</div>
+
+{% endblock %}

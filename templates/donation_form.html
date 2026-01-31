@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dr-blob blob-1"></div>
+<div class="dr-blob blob-2"></div>
+
+<h1 class="dr-page-title">Make a Donation</h1>
+<p class="dr-page-subtitle">
+    Please provide clear details so we can route your donation to the most suitable NGO.
+</p>
+
+<!-- FORM CONTAINER -->
+<div class="donation-form-card">
+
+    <form method="post" class="donation-form">
+
+        <!-- ITEM NAME -->
+        <div class="df-field">
+            <label class="df-label">
+                <i class="ri-gift-line df-icon"></i>
+                Item Name <span class="req">*</span>
+            </label>
+            <input
+                class="df-input"
+                name="item_name"
+                required
+                minlength="3"
+                placeholder="e.g. Food ration, school bags, winter jackets"
+            >
+        </div>
+
+        <!-- QUANTITY -->
+        <div class="df-field">
+            <label class="df-label">
+                <i class="ri-box-3-line df-icon"></i>
+                Quantity <span class="req">*</span>
+            </label>
+            <input
+                class="df-input"
+                name="quantity"
+                type="number"
+                min="1"
+                required
+                placeholder="e.g. 10"
+            >
+        </div>
+
+        <!-- CONDITION -->
+        <div class="df-field">
+            <label class="df-label">
+                <i class="ri-shield-check-line df-icon"></i>
+                Condition <span class="req">*</span>
+            </label>
+            <select name="condition" class="df-select" required>
+                <option value="">Select condition</option>
+                <option value="New">New</option>
+                <option value="Gently Used">Gently Used</option>
+                <option value="Good">Good</option>
+                <option value="Needs Repair">Needs Repair</option>
+            </select>
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="df-field">
+            <label class="df-label">
+                <i class="ri-community-line df-icon"></i>
+                Donation Category <span class="req">*</span>
+            </label>
+            <select name="category_hint" class="df-select" required>
+                <option value="">Select category</option>
+                <option value="Food">Food / Ration</option>
+                <option value="Clothes">Clothes</option>
+                <option value="Education">Education (Books, Bags, Stationery)</option>
+                <option value="Medical">Medical Equipment</option>
+                <option value="Electronics">Electronics / Devices</option>
+                <option value="Furniture">Furniture</option>
+            </select>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="df-field">
+            <label class="df-label">
+                <i class="ri-file-text-line df-icon"></i>
+                Description (Optional)
+            </label>
+            <textarea
+                name="description"
+                class="df-textarea"
+                rows="3"
+                placeholder="Provide additional details: size, age, packaging, or notes for NGO"
+            ></textarea>
+        </div>
+
+        <!-- BUTTON -->
+        <div class="df-actions">
+            <button type="submit" class="df-btn">
+                Submit Donation
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

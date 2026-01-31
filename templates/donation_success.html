@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dr-blob blob-1"></div>
+<div class="dr-blob blob-2"></div>
+
+<h1 class="dr-page-title">Donation Submitted</h1>
+<p class="dr-page-subtitle">
+    Thank you for your generosity! Your donation request has been submitted successfully.
+</p>
+
+<!-- SUCCESS CARD -->
+<div class="success-card">
+
+    <!-- Animated Success Icon -->
+    <div class="success-icon">
+        <span>✔</span>
+    </div>
+
+    <!-- Message -->
+    <p class="success-text">
+        Your donation has been received and is now being reviewed by our team.
+    </p>
+
+    <!-- TRACKING BOX -->
+    <div class="tracking-box">
+        <strong>Your Tracking ID:</strong><br>
+        <span class="tracking-id">{{ tracking_id }}</span>
+    </div>
+
+    <!-- Instructions -->
+    <p class="success-note">
+        Please save this tracking ID. You can use the <strong>Track Donation</strong> page
+        to check your donation status any time.
+    </p>
+
+    <!-- CTA -->
+    <a href="{{ url_for('track') }}" class="df-btn success-btn">
+        Track Donation
+    </a>
+
+</div>
+
+{% endblock %}

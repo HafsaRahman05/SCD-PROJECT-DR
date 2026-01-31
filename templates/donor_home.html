@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ============================= -->
+<!-- HERO SECTION -->
+<!-- ============================= -->
+<div class="dr-home-hero">
+
+    <h1 class="dr-page-title">
+        Donation Routing System
+    </h1>
+
+    <p class="dr-page-subtitle">
+        A centralized platform connecting donors with verified NGOs to ensure
+        transparent and efficient donation routing.
+    </p>
+
+    <!-- ============================= -->
+    <!-- PORTAL CARDS -->
+    <!-- ============================= -->
+    <div class="dr-home-grid">
+
+        <!-- DONOR PORTAL -->
+        <div class="dr-card dr-card-animated">
+            
+            <div class="dr-card-header">
+                <div>
+                    <div class="dr-card-title">Donor Portal</div>
+                    <div class="dr-card-subtitle">
+                        Submit donations & support NGOs
+                    </div>
+                </div>
+                <span class="dr-chip dr-chip-green">Donor</span>
+            </div>
+
+            <p class="dr-help">
+                Whether you're a new donor or a returning contributor,
+                use this portal to submit and track your donations.
+            </p>
+
+            <div class="dr-home-buttons">
+                <a href="{{ url_for('register') }}" class="dr-btn dr-btn-full">
+                    New Donor — Create Account
+                </a>
+
+                <a href="{{ url_for('login', role='donor') }}"
+                   class="dr-btn-secondary dr-btn-full">
+                    Existing Donor — Login
+                </a>
+            </div>
+
+        </div>
+
+        <!-- ADMIN PORTAL -->
+        <div class="dr-card dr-card-animated">
+            
+            <div class="dr-card-header">
+                <div>
+                    <div class="dr-card-title">Admin Portal</div>
+                    <div class="dr-card-subtitle">
+                        Manage NGOs & routing decisions
+                    </div>
+                </div>
+                <span class="dr-chip dr-chip-blue">Admin</span>
+            </div>
+
+            <p class="dr-help">
+                Authorized administrators can review donations,
+                assign NGOs, and manage system operations.
+            </p>
+
+            <div class="dr-home-buttons">
+                <a href="{{ url_for('admin_login', role='admin') }}"
+                   class="dr-btn dr-btn-full">
+                    Login as Administrator
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

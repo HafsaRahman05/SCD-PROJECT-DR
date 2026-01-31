@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dr-card" style="max-width: 900px; margin: auto;">
+  <h2 class="dr-page-title" style="margin-bottom: 6px;">Available NGOs</h2>
+  <p class="dr-page-subtitle" style="margin-bottom: 18px;">
+    Here are all NGOs currently available in the system, including their category and location.
+  </p>
+
+  {% if ngos and ngos|length > 0 %}
+    <div style="display:grid; gap:14px;">
+      {% for ngo in ngos %}
+        <div class="dr-card" style="margin:0; padding:16px;">
+          <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+            <div>
+              <h3 style="margin:0 0 6px 0; font-size:18px; font-weight:700;">
+                {{ ngo.name }}
+              </h3>
+
+              <!-- NGO META INFO -->
+              <div style="font-size:14px; opacity:0.9; margin-bottom:8px;">
+                <strong>Category:</strong> {{ ngo.category or "—" }}
+                &nbsp; • &nbsp;
+                <strong>Location:</strong> {{ ngo.location or "—" }}
+                &nbsp; • &nbsp;
+                <strong>Pickup:</strong> Pickup Available
+              </div>
+
+              {% if ngo.description %}
+                <div style="font-size:14px; line-height:1.5; opacity:0.95;">
+                  {{ ngo.description }}
+                </div>
+              {% else %}
+                <div style="font-size:14px; opacity:0.7;">
+                  No description provided.
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="dr-alert dr-alert-warning">
+      No NGOs found in the system right now.
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

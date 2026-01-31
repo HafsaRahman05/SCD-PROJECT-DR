@@ -1,0 +1,76 @@
+{% extends "base_admin.html" %}
+{% block content %}
+
+<h1 class="dr-page-title">NGOs (Admin View)</h1>
+<p class="dr-page-subtitle">
+  Manage registered NGOs and their current needs.
+</p>
+
+<div class="ngo-card">
+
+  <div class="ngo-header">
+    <h2 class="ngo-title">Registered NGOs</h2>
+    <p class="ngo-subtitle">Below is the verified list of NGOs within the system.</p>
+  </div>
+
+  <div class="ngo-table-wrapper">
+    <table class="ngo-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Accepts</th>
+          <th>Geo Zone</th>
+          <th>Current Need</th>
+          <th>Pickup</th>
+          <th>Needs</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for ngo in ngos %}
+        <tr>
+          <td class="ngo-name">{{ ngo.name }}</td>
+          <td>{{ ngo.accepted_categories }}</td>
+          <td>{{ ngo.zone }}</td>
+
+          <!-- CURRENT NEED (same logic as donor) -->
+          <td>
+            {% set need = needs_map.get(ngo.id) if needs_map else None %}
+            {% if need %}
+              <strong>{{ need.item_name }} ({{ need.qty_remaining }})</strong>
+              {% if need.details %}
+                <div style="font-size:12px; opacity:0.85; margin-top:4px;">
+                  {{ need.details }}
+                </div>
+              {% endif %}
+            {% else %}
+              <span style="opacity:0.7;">—</span>
+            {% endif %}
+          </td>
+
+          <!-- Pickup Badge -->
+          <td>
+            {% if ngo.has_pickup %}
+              <span class="badge green">Pickup Available</span>
+            {% else %}
+              <span class="badge red">No Pickup</span>
+            {% endif %}
+          </td>
+
+          <!-- Manage Needs button -->
+          <td>
+            <a href="{{ url_for('admin_manage_ngo_needs', ngo_id=ngo.id) }}"
+               class="badge green"
+               style="text-decoration:none; display:inline-block;">
+              Manage
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+{% endblock %}

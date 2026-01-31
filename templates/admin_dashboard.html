@@ -1,0 +1,86 @@
+{% extends "base_admin.html" %}
+{% block content %}
+
+<h1 class="dr-page-title">Admin Dashboard</h1>
+<p class="dr-page-subtitle">
+  High-level overview of donations and NGOs.
+</p>
+
+<!-- CARD WRAPPER -->
+<div style="max-width: 900px; margin: 32px auto 0 auto;">
+
+  <div style="
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+  ">
+
+    <!-- PENDING CARD -->
+    <a href="{{ url_for('admin_pending_donations') }}" class="admin-card-clean pending-card-clean">
+      <div class="admin-card-top">
+        <div class="admin-card-icon-wrap pending-icon-wrap">
+          <i class="fa fa-hourglass-half"></i>
+        </div>
+        <div class="admin-card-top-text">
+          <div class="admin-card-title-clean">Pending Donations</div>
+          <div class="admin-card-number-clean">{{ pending|length }}</div>
+        </div>
+      </div>
+      <div class="admin-card-desc-clean">
+        Donations submitted by donors that are waiting for your review and NGO assignment.
+      </div>
+    </a>
+
+    <!-- ASSIGNED CARD -->
+    <a href="{{ url_for('admin_assigned_donations') }}" class="admin-card-clean assigned-card-clean">
+      <div class="admin-card-top">
+        <div class="admin-card-icon-wrap assigned-icon-wrap">
+          <i class="fa fa-check-circle"></i>
+        </div>
+        <div class="admin-card-top-text">
+          <div class="admin-card-title-clean">Assigned Donations</div>
+          <div class="admin-card-number-clean">{{ assigned|length }}</div>
+        </div>
+      </div>
+      <div class="admin-card-desc-clean">
+        Donations that have been matched with NGOs and are currently in progress.
+      </div>
+    </a>
+
+    <!-- REJECTED CARD -->
+    <a href="{{ url_for('admin_rejected_donations') }}" class="admin-card-clean rejected-card-clean">
+      <div class="admin-card-top">
+        <div class="admin-card-icon-wrap rejected-icon-wrap">
+          <i class="fa fa-times-circle"></i>
+        </div>
+        <div class="admin-card-top-text">
+          <div class="admin-card-title-clean">Rejected Donations</div>
+          <div class="admin-card-number-clean">{{ rejected|length }}</div>
+        </div>
+      </div>
+      <div class="admin-card-desc-clean">
+        Donations you rejected due to mismatch, quality issues, or other constraints.
+      </div>
+    </a>
+
+    <!-- NGOs CARD -->
+    <a href="{{ url_for('admin_ngos_list') }}" class="admin-card-clean ngo-card-clean">
+      <div class="admin-card-top">
+        <div class="admin-card-icon-wrap ngo-icon-wrap">
+          <i class="fa fa-building"></i>
+        </div>
+        <div class="admin-card-top-text">
+          <div class="admin-card-title-clean">Registered NGOs</div>
+          <div class="admin-card-number-clean">{{ ngos|length }}</div>
+        </div>
+      </div>
+      <div class="admin-card-desc-clean">
+        Verified NGOs currently available inside the system to receive donations.
+      </div>
+    </a>
+
+  </div>
+
+</div>
+
+{% endblock %}

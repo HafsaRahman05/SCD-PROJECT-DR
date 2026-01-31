@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dr-blob blob-1"></div>
+<div class="dr-blob blob-2"></div>
+
+<h1 class="dr-page-title">Track Your Donation</h1>
+<p class="dr-page-subtitle">
+    Enter your tracking ID to check the current status of your donation.
+</p>
+
+<div class="track-card">
+
+    <form method="post" class="track-form">
+
+        <!-- TRACKING ID FIELD -->
+        <div class="track-field">
+            <label>Tracking ID</label>
+            <input
+                type="text"
+                name="tracking_id"
+                required
+                placeholder="Enter your tracking ID"
+            >
+        </div>
+
+        <!-- SUBMIT BUTTON -->
+        <button type="submit" class="track-btn">
+            Check Status
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

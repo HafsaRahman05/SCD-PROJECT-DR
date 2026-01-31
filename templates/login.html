@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block content %}
+{% set role = request.args.get('role', 'donor') %}
+
+<div class="dr-blob blob-1"></div>
+<div class="dr-blob blob-2"></div>
+
+<h1 class="dr-page-title">
+  {% if role == 'admin' %}
+    Admin Login
+  {% else %}
+    Donor Login
+  {% endif %}
+</h1>
+
+<p class="dr-page-subtitle">
+  {% if role == 'admin' %}
+    Access the secure admin panel to manage donations.
+  {% else %}
+    Welcome back! Please enter your details to continue donating.
+  {% endif %}
+</p>
+
+<!-- LOGIN CARD -->
+<div class="dr-card" style="max-width: 460px; margin: auto;">
+
+  <form method="post" class="dr-form">
+
+      <!-- EMAIL -->
+      <div class="dr-field">
+        <label class="dr-label">Email Address</label>
+        <input
+          name="email"
+          type="email"
+          class="dr-input"
+          required
+          placeholder="name@example.com"
+        >
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="dr-field">
+        <label class="dr-label">Password</label>
+
+        <div class="dr-password-wrapper">
+          <input
+            class="dr-input"
+            name="password"
+            type="password"
+            required
+            placeholder="Your password"
+            id="login_password"
+          >
+          <button type="button" class="dr-eye" onclick="togglePassword('login_password', this)">
+              <i class="fa fa-eye"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- LOGIN BUTTON -->
+      <button type="submit" class="dr-btn dr-btn-full">
+        Login
+      </button>
+
+  </form>
+
+  <!-- REGISTER LINK (Only for Donor) -->
+  {% if role != 'admin' %}
+  <div style="text-align:center; margin-top:14px; font-size:14px;">
+      New donor?
+      <a href="{{ url_for('register') }}" style="color:#16a34a; font-weight:600;">
+         Create an account
+      </a>
+  </div>
+  {% endif %}
+
+</div>
+
+<!-- PASSWORD TOGGLE SCRIPT -->
+<script>
+function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector("i");
+    if (!input || !icon) return;
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+</script>
+
+{% endblock %}

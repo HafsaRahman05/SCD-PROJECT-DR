@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Donation Routing System</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="dr-shell">
+
+    <header class="dr-header">
+
+        <div class="dr-logo">
+            <div class="dr-logo-icon">
+                <svg viewBox="0 0 80 80" width="46" height="46">
+                    <defs>
+                        <linearGradient id="drGreenGold1" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0%" stop-color="#4ade80" />
+                            <stop offset="100%" stop-color="#16a34a" />
+                        </linearGradient>
+                        <linearGradient id="drGreenGold2" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0%" stop-color="#facc15" />
+                            <stop offset="100%" stop-color="#eab308" />
+                        </linearGradient>
+                    </defs>
+
+                    <circle cx="40" cy="40" r="28" fill="url(#drGreenGold1)" />
+                    <circle cx="40" cy="40" r="22" fill="#ffffffcc" />
+
+                    <path d="M18 48 C25 55, 33 58, 40 58 C47 58, 55 55, 62 48 
+                             C63 46, 62 44, 60 44 C58 44, 55 47, 51 48 
+                             C48 49, 44 49, 40 49 C36 49, 32 49, 29 48 
+                             C25 47, 22 44, 20 44 C18 44, 17 46, 18 48Z"
+                          fill="white" />
+
+                    <path d="M40 47
+                             C40 47, 31 41, 31 34
+                             C31 30, 34 27, 37 27
+                             C39 27, 40 28, 40 29
+                             C40 28, 41 27, 43 27
+                             C46 27, 49 30, 49 34
+                             C49 41, 40 47, 40 47Z"
+                          fill="url(#drGreenGold2)" />
+                </svg>
+            </div>
+
+            <div class="dr-logo-text">
+                Donation <span>Routing</span>
+            </div>
+        </div>
+
+    </header>
+
+    {% if not hide_navbar %}
+    <nav class="dr-nav-wrapper">
+    <div class="dr-nav">
+        <a class="dr-nav-link" href="{{ url_for('donor_home') }}">Home</a>
+        <a class="dr-nav-link" href="{{ url_for('donate') }}">New Donation</a>
+        <a class="dr-nav-link" href="{{ url_for('track') }}">Track Donation</a>
+        <a class="dr-nav-link" href="{{ url_for('public_ngos') }}">Our NGOs</a>
+        <a class="dr-nav-link" href="{{ url_for('logout') }}">Logout</a>
+
+    </div>
+    </nav>
+    {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="dr-alert-box">
+            {% for category, msg in messages %}
+                <div class="dr-alert-item">
+                    <strong>{{ category }}:</strong> {{ msg }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <main class="dr-page">
+        {% block content %}{% endblock %}
+    </main>
+
+</div>
+
+<!-- PASSWORD TOGGLE SCRIPT -->
+<script>
+function togglePassword(inputId, btn) {
+    const input = document.getElementById(inputId);
+    const icon = btn.querySelector("i");
+    if (!input || !icon) return;
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+</script>
+
+</body>
+</html>
